@@ -97,7 +97,18 @@ enum TipoDeUsuario
 //[0000 0010] // AND LÓGICO que es como el &&
 
 
+void FuncionPila1();
 
+void FuncionPila2();
+
+void FuncionPila3();
+
+
+struct Rectangulo
+{
+	float alto;
+	float ancho;
+};
 
 
 // Qué es un Main?
@@ -182,6 +193,28 @@ int main()
 		cout << "después del for de Y" << endl;
 	}
 
+	// Operadores lógicos
+	// && (operador AND) ambos tienen que ser verdad para que el resultado sea verdad
+	// || (operador OR) cualquiera de los dos tienen que ser verdad para que el resultado sea verdad
+	// ! (operador NOT) invierte el valor de verdad de a quien se le use
+	// bool myBool = true;
+	// if(myBool != true)
+	// XOR es uno de los dos valores tiene que ser verdad, pero el otro no. Existe la palabra clave en c++ "xor".
+	// if( (x==true && y == false) ||  
+	// 	(x==false && y == true))
+
+	// La pila de llamadas le dice al programa dónde va la ejecución, y a dónde regresar una vez que acabe 
+	// con la función que esté ejecutando actualmente
+	FuncionPila1();
+
+
+	Rectangulo myRectangulo;
+	myRectangulo.alto = 5.0f;
+	myRectangulo.ancho = 3.0f;
+
+	Rectangulo myOtherRectangulo;
+
+
 
 	// Return es: salte de la función donde está puesto. Te lleva a la llave de cierre de la función en donde está.
 
@@ -191,3 +224,22 @@ int main()
 }
 
 
+
+
+
+void FuncionPila1()
+{
+	cout << "función pila 1 \n";
+	FuncionPila2();
+}
+
+void FuncionPila2()
+{
+	cout << "función pila 2 \n";
+	FuncionPila3();
+}
+
+void FuncionPila3()
+{
+	cout << "función pila 3 \n";
+}
