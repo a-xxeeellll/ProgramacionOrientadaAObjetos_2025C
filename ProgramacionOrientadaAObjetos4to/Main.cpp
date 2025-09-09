@@ -161,8 +161,6 @@ int main()
 	// 3) Y que si falla, va a dejar un rastro de dónde falló
 	// 4) Y que va a tratar de recuperarse lo mejor posible.
 
-
-
 	for (int x = 0; x < 10; x++)
 	{
 		cout << "antes del for de Y" << endl;
@@ -183,6 +181,7 @@ int main()
 
 		cout << "después del for de Y" << endl;
 	}
+
 
 	// Return es: salte de la función donde está puesto. Te lleva a la llave de cierre de la función en donde está.
 
