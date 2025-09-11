@@ -9,6 +9,17 @@ using namespace std;
 #include "ArchivoEjemplo2.h"
 #include "TareaEjemplo.h"
 
+// Todos los defines se remplazan por el texto que tienen a la derecha.
+#define TAMANO_MY_INT_ARRAY 10
+#define MULTIPLICACION_2_X_3 2*3 
+
+// aquí, lo que está entre paréntesis son parámetros, pero los parámetros que uses tienen que ser constantes, no variables.
+#define MULTIPLICACION_CON_PARAMETROS(a, b) a*b
+
+// estas de abajo sí son cosas ya más elaboradas, avanzadas, complejas, no necesito que se las aprendan ni
+// que las dominen, solo que sepan que existen.
+#define DEFINIR_VARIABLES float myValue1; float myValue2; float myValue3;
+#define DEFINIR_VARIABLES_CON_NOMBRE(a, b, c) float a; float b; float c;
 
 
 // Por qué 'C' se llama 'C'? Porque existen los lenguajes A y B
@@ -106,9 +117,45 @@ void FuncionPila3();
 
 struct Rectangulo
 {
+	// Por defecto, todas las propiedades de una struct son públicas.
+	// public es que se puede usar esa propiedad de la clase desde cualquier instancia/objeto de dicha clase.
+public:
 	float alto;
 	float ancho;
+
+	// generalmente* las structs no deben llevar funciones/métodos, mientras que las classes sí.
+	// *aplican casos especiales.
+
+
+	bool myBool;
+
+	// DEFINIR_VARIABLES_CON_NOMBRE(posicionx, posiciony, posicionz)
 };
+
+class RectanguloClase
+{
+	// Por el contrario a las structs, las classes tienen todas sus propiedades como privadas.
+	// privado es que solo se puede usar dicha propiedad dentro del alcance (las '{}') de la clase donde fue declarado/definido.
+	// Entonces solo sirven para cosas internas de dicha clase (o estructura).
+	// Para poder acceder a ellas hay que especificarle que son públicas
+// private:
+public:
+	float alto;
+	float ancho;
+
+	float ObtenerArea()
+	{
+		return alto * ancho;
+	}
+
+// protected
+protected:
+
+};
+
+
+
+
 
 
 // Qué es un Main?
@@ -210,9 +257,79 @@ int main()
 
 	Rectangulo myRectangulo;
 	myRectangulo.alto = 5.0f;
+	cout << "el alto de myRectangulo es: " << myRectangulo.alto << endl;
 	myRectangulo.ancho = 3.0f;
 
-	Rectangulo myOtherRectangulo;
+	Rectangulo myOtherRectangulo = Rectangulo();
+	cout << "el alto de myOtherRectangulo es: " << myOtherRectangulo.alto << endl;
+
+	RectanguloClase myRectanguloClase;
+	myRectanguloClase.alto = 5.0f;
+	myRectanguloClase.ancho = 5.0f;
+	myRectanguloClase.ObtenerArea(); // aquí le estoy pidiendo que me dé el área de este rectángulo en específico.
+
+
+	/*bool myBoolSinInicializar;
+	cout << myBoolSinInicializar << endl;*/
+
+	// le tenemos que dar el tamaño de antemano.
+	int myIntArray[10];
+	cout << myIntArray[0] << endl;
+
+	// el tamaño tiene que ser una constante, una variable normal NO es constante, 
+	// entonces no la podemos usar para definir ese tamaño.
+	// int tamanioArray = 10;
+	// int myIntArray2[tamanioArray];
+
+	// Sí se puede usar un valor definido (#define), constante (const)
+	int myDefineArray[TAMANO_MY_INT_ARRAY];
+
+	int myDefineArrayConMultiplicacion[MULTIPLICACION_2_X_3];
+
+	for (int i = 0; i < MULTIPLICACION_2_X_3; i++)
+	{
+		myDefineArrayConMultiplicacion[i] = i;
+		cout << "myDefineArrayConMultiplicacion[i] es: " << myDefineArrayConMultiplicacion[i];
+	}
+
+	int myDefineArrayConMacro[MULTIPLICACION_CON_PARAMETROS(10, 4)];
+
+
+	// arreglos bidimensionales
+	int myBidimensionalArray[2][3];
+	// [X1,X2]
+	// [Y1,Y2]
+	// [Z1,Z2]
+	// Lo que la computadora hace en memoria
+
+	// un arreglo de [N][M] es lo mismo que un arreglo de [N*M]
+	int bidimensional[2][3];
+	int unidimensional[2 * 3];
+
+
+	for (int x = 0; x < 2; x++)
+	{
+		for (int y = 0; y < 3; y++)
+		{
+			myBidimensionalArray[x][y] = x * 3 + y;
+			cout << "myBidimensionalArray["<<x<<"]["<<y<<"]" << myBidimensionalArray[x][y] << endl;
+		}
+	}
+
+
+	int tridimensional[2][3][4];
+
+	for (int x = 0; x < 2; x++)
+	{
+		for (int y = 0; y < 3; y++)
+		{
+			for(int z = 0; z < 4; z++ )
+			{
+				tridimensional[x][y][z] = (x * 3 * 4) + (y*4) + z;
+				cout << "myBidimensionalArray[" << x << "][" << y << "]["<<z<<"]: " << myBidimensionalArray[x][y] << endl;
+			}
+		}
+	}
 
 
 
