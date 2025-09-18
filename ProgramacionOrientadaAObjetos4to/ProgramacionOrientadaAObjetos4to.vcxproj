@@ -129,16 +129,20 @@
   <ItemGroup>
     <ClCompile Include="ArchivoEjemplo2.cpp" />
     <ClCompile Include="ArchivosEjemplo.cpp" />
+    <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OtherMain.cpp" />
     <ClCompile Include="TareaEjemplo.cpp" />
     <ClCompile Include="UserLoginData.cpp" />
+    <ClCompile Include="WebPacket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArchivoEjemplo2.h" />
     <ClInclude Include="ArchivosEjemplo.h" />
+    <ClInclude Include="EjerciciosMemoriaDinamica.h" />
     <ClInclude Include="TareaEjemplo.h" />
     <ClInclude Include="UserLoginData.h" />
+    <ClInclude Include="WebPacket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

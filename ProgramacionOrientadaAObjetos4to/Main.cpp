@@ -9,6 +9,10 @@ using namespace std;
 #include "ArchivoEjemplo2.h"
 #include "TareaEjemplo.h"
 
+#include "WebPacket.h"
+#include "EjerciciosMemoriaDinamica.h"
+
+
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
 #define MULTIPLICACION_2_X_3 2*3 
@@ -52,12 +56,6 @@ int Suma(int a, int b)
 	return resultado;
 }
 */
-
-int Suma(int a, int b)
-{
-	int resultado = a + b;
-	return resultado;
-}
 
 int Resta(int a, int b)
 {
@@ -155,8 +153,87 @@ protected:
 
 
 
+// Los parámetros de una función son los valores "externos a ella" que se le pasan para hacer un procedimiento.
+int SumaDeTres(int a, int b, int c)
+{
+	return a + b + c;
+}
+
+// Overload = sobrecarga
+// regresan el mismo tipo de dato, se llaman exactamente igual, pero reciben distintos parámetros, ya sea de tipo o cantidad
+int SumaDeTres(char a, char b, int c)
+{
+	if(a < 'a' || a > 'z')
+		// entonces no es una letra
+	return a + b + c;
+}
+
+// Ejemplos básicos de sobrecarga con 2, 3 y 4 parámetros
+int Suma(int a, int b)
+{
+	return a + b;
+}
+
+int Suma(int a, int b, int c)
+{
+	return a + b + c;
+}
+
+int Suma(int a, int b, int c, int d)
+{
+	return a + b + c + d;
+}
 
 
+
+// Caso de uso que podría ser real.
+ 
+
+
+//string InvertirCadena(string texto)
+//{
+//	string invertida;
+//	for (int i = texto.length() - 1; i > 0; i++)
+//	{
+//		invertida.append(texto.at);
+//	}
+//	return;
+//}
+
+
+// parámetros por valor y parámetros por referencia (value & reference)
+// Los de valor se pasa una copia del valor de la variable.
+void FuncionConParametrosPorValor(int a, int b)
+{
+	a = a + b;
+	cout << "el valor de a ahora es: " << a << endl;
+}
+
+// si nosotros queremos que los cambios que una variable sufre dentro de una función sean permanentes, 
+// lo tenemos que pasar como un parámetro por referencia.
+// Lo que pasa cuando pasas un parámetro por referencia, es que realmente pasas la dirección de memoria de la variable,
+// por eso es que el cambio permanece.
+void FuncionConParametrosPorReferencia(int &a, int b)
+{
+	a = a + b;
+	cout << "el valor de a, pasador por referencia, ahora es: " << a << endl;
+}
+
+// el cambio a lo que está dentro de donde apunta 'a' sí es permanente, pero los cambios a 'a' no lo son.
+void FuncionConParametrosQueSonPunteros(int* a, int b)
+{
+	*a = *a + b; // esto modifica el valor que tiene dentro la dirección de memoria a la que apunta 'a'
+	cout << "el valor de a, pasado por referencia, ahora es: " << *a << endl;
+
+	cout << "La dirección de memoria a la que apunta a es: " << a << endl;
+	a = a + b; // esto modifica la dirección de memoria a la que apunta 'a' (los mueve b*(tamañoDeInt) a la derecha en memoria)
+	cout << "La dirección de memoria a la que apunta a después de sumarle b es: " << a << endl;
+}
+
+
+// void es un tipo de dato (técnicamente hablando). La traducción de void sería "vacío".
+// cuando tú dices que el tipo de retorno de una función es void, sería que su retorno es vacío, es decir, es nada.
+// Entonces no necesitan un "return". Lo pueden tener, pero solo sirve para salirse de la función.
 
 // Qué es un Main?
 // ¿Por qué Main? Main significa principal, se refiere a que es el punto principal de entrada de la ejecución de este programa
@@ -166,6 +243,30 @@ protected:
 
 int main()
 {
+	// no se puede declarar variables void.
+	// void myVoid;
+	// sí podemos hacer punteros a void :D 
+	// se usan para punteros a funciones
+	// void* myVoidPointer; // NO LOS VAMOS A VER NI USAR EN ESTA CLASE, PERO LES DEJO EL DATO.
+
+	int valorA = 1;
+	int valorB = 2;
+	cout << "el valorA antes de la función con parámetros por valor es: " << valorA << endl;
+	FuncionConParametrosPorValor(valorA, valorB);
+	cout << "el valorA después de la función con parámetros por valor es: " << valorA << endl;
+
+	FuncionConParametrosPorReferencia(valorA, valorB);
+	cout << "el valorA después de la función con parámetros por referencia es: " << valorA << endl;
+
+	// le digo a la variable myPointer que ahora guarda la dirección de memoria donde está la variable valorA.
+	int* myPointer = &valorA;
+	FuncionConParametrosQueSonPunteros(myPointer, valorB);
+	cout << "el valorA después de la función con parámetros por referencia es: " << valorA << endl;
+
+	*myPointer += 10;
+
+	
+
 	// En el main del proyecto, mandan a llamar el Main de la tarea en específico que estén entregando.
 	MainTareaEjemplo();
 
@@ -175,7 +276,7 @@ int main()
 	// Para la tarea 3, lo mismo.
 	// MainTareaEjemplo3();
 
-
+	MainWebPacket();
 
 	// Suma(1, 2);
 
@@ -260,6 +361,11 @@ int main()
 	cout << "el alto de myRectangulo es: " << myRectangulo.alto << endl;
 	myRectangulo.ancho = 3.0f;
 
+	Rectangulo* myRectanguloPointer = &myRectangulo;
+	(*myRectanguloPointer).alto = 10.0f; // esta línea y la de abajo hacen exactamente lo mismo.
+	myRectanguloPointer->alto = 10.0f;
+
+
 	Rectangulo myOtherRectangulo = Rectangulo();
 	cout << "el alto de myOtherRectangulo es: " << myOtherRectangulo.alto << endl;
 
@@ -269,12 +375,15 @@ int main()
 	myRectanguloClase.ObtenerArea(); // aquí le estoy pidiendo que me dé el área de este rectángulo en específico.
 
 
+
+
 	/*bool myBoolSinInicializar;
 	cout << myBoolSinInicializar << endl;*/
 
 	// le tenemos que dar el tamaño de antemano.
 	int myIntArray[10];
 	cout << myIntArray[0] << endl;
+	
 
 	// el tamaño tiene que ser una constante, una variable normal NO es constante, 
 	// entonces no la podemos usar para definir ese tamaño.
@@ -330,6 +439,19 @@ int main()
 			}
 		}
 	}
+
+	// Esto se acaba la memoria estática cuando ponemos 365*1000, 
+	//int nDimensional[365][100];
+	//for (int x = 0; x < 365; x++)
+	//{
+	//	for (int y = 0; y < 100; y++)
+	//	{
+	//		nDimensional[x][y] = x * 100 + y;
+	//		cout << "nDimensional[" << x << "][" << y << "]" << nDimensional[x][y] << endl;
+	//	}
+	//}
+
+	MainEjemplosMemoriaDinamica();
 
 
 
