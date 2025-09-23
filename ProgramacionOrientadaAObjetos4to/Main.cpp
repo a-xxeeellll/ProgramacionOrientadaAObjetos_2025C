@@ -11,7 +11,7 @@ using namespace std;
 
 #include "WebPacket.h"
 #include "EjerciciosMemoriaDinamica.h"
-
+#include "ClaseConstructoresYDestructores.h"
 
 // Todos los defines se remplazan por el texto que tienen a la derecha.
 #define TAMANO_MY_INT_ARRAY 10
@@ -231,6 +231,23 @@ void FuncionConParametrosQueSonPunteros(int* a, int b)
 }
 
 
+
+// 1) checar si es lunes, y si sí, llamar una función  que imprima: "es lunes"
+void EsLunes(int dia)
+{
+	// esto de aquí primero manda a llamar la función y luego checa si sí es lunes.
+	if (dia == 0) // 0 es lunes, digamos
+	{
+		cout << "es lunes" << endl;
+	}
+}
+
+void ImprimirEsLunes()
+{ 
+	cout << "es lunes" << endl;
+}
+
+
 // void es un tipo de dato (técnicamente hablando). La traducción de void sería "vacío".
 // cuando tú dices que el tipo de retorno de una función es void, sería que su retorno es vacío, es decir, es nada.
 // Entonces no necesitan un "return". Lo pueden tener, pero solo sirve para salirse de la función.
@@ -243,6 +260,38 @@ void FuncionConParametrosQueSonPunteros(int* a, int b)
 
 int main()
 {
+	// cuando tú no especificas el constructor, se manda a llamar el constructor por defecto.
+	Triangle myTriangle; // el constructor se manda a llamar automáticamente al declarar este objeto
+
+	myTriangle.ImprimirTriangulo();
+
+	// Así es como se manda a llamar un constructor manualmente. En este caso estoy mandando a llamar el constructor
+	// por defecto.
+	Triangle myDefaultTriangle = Triangle();
+
+
+	Triangle myNonDefaultTriangle = Triangle(5, 2);
+
+	Triangle creadoPorFuncionEnVezDeConstructor = GenerarTriangulo(5, 2);
+
+
+	Triangle* ptrTriangle = new Triangle();
+
+	int dia = 0;
+	if (dia == 0)
+	{
+		ImprimirEsLunes();
+	}
+
+	// static_cast<void*>
+
+	// bool myBool = true;
+	// cout << (myBool ? "true" : "false") << endl;
+	// cout <<  boolalpha(myBool) << endl;
+
+	// If de una sola línea
+	// (condition) ? then : else
+
 	// no se puede declarar variables void.
 	// void myVoid;
 	// sí podemos hacer punteros a void :D 
@@ -320,17 +369,23 @@ int main()
 	// 3) Y que si falla, va a dejar un rastro de dónde falló
 	// 4) Y que va a tratar de recuperarse lo mejor posible.
 
-	for (int x = 0; x < 10; x++)
+
+	int tamanioDelEjeX = 10;
+	int tamanioDelEjeY = 10;
+	int valorDeYQueHaraContinue = 4;
+	int valorDeYQueHaraBreak = 5;
+
+	for (int x = 0; x < tamanioDelEjeX; x++)
 	{
 		cout << "antes del for de Y" << endl;
 
-		for (int y = 0; y < 10; y++)
+		for (int y = 0; y < tamanioDelEjeY; y++)
 		{
-			if (y < 4)
+			if (y < valorDeYQueHaraContinue)
 				continue;
 
 			cout << "antes del break dentro del for de Y, y es: " << y << endl;
-			if (y == 5)
+			if (y == valorDeYQueHaraBreak)
 			{
 				break; // te saca del scope del ciclo dentro del cual está, saltándose todo lo que esté debajo.
 

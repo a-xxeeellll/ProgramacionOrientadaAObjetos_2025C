@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="ArchivoEjemplo2.cpp" />
     <ClCompile Include="ArchivosEjemplo.cpp" />
+    <ClCompile Include="ClaseConstructoresYDestructores.cpp" />
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OtherMain.cpp" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClInclude Include="ArchivoEjemplo2.h" />
     <ClInclude Include="ArchivosEjemplo.h" />
+    <ClInclude Include="ClaseConstructoresYDestructores.h" />
     <ClInclude Include="EjerciciosMemoriaDinamica.h" />
     <ClInclude Include="TareaEjemplo.h" />
     <ClInclude Include="UserLoginData.h" />

@@ -1,5 +1,7 @@
 #include "EjerciciosMemoriaDinamica.h"
 
+#include<iostream>
+using namespace std;
 
 void MainEjemplosMemoriaDinamica()
 {
@@ -20,6 +22,7 @@ void MainEjemplosMemoriaDinamica()
 
 	// *myNewInt = 10; // truena porque no tienes permiso de escritura en esa dirección porque ya hiciste delete.
 
+
 	// este sigue apuntando a la dirección de memoria que se había obtenido con el new, pero ahí dentro de esa dirección
 	// ya no hay datos válidos, se borraron al hacer el delete.
 	// Dangling pointer = puntero colgante, significa que un puntero cree que todavía apunta a algo válido, pero ya no lo es.
@@ -29,5 +32,14 @@ void MainEjemplosMemoriaDinamica()
 	*myIntPointer = 10; // ? sí te deja escribir, porque la dirección de memoria NO está reservada, pero no deberías!
 
 
+	// NO SE PUEDE HACER DELETE A MEMORIA ESTÁTICA
+	int myNormalInt = 10;
+	int* ptrToNormalInt = &myNormalInt; // esto de aquí no es memoria dinámica, no se le necesita hacer delete
+	// delete ptrToNormalInt; // esto apunta a una variable de memoria estática, y por lo tanto truena tu programa si le intentas hacer delete.
+	cout << "myNormalInt" << myNormalInt << endl;
+
+	myNormalInt = NULL;
+	ptrToNormalInt = nullptr;
+	// if (myNormalInt == nullptr) // una variable no-puntero no se puede comparar contra nullptr.
 
 }

@@ -39,6 +39,9 @@
     <ClCompile Include="EjerciciosMemoriaDinamica.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="ClaseConstructoresYDestructores.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArchivosEjemplo.h">
@@ -57,6 +60,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="EjerciciosMemoriaDinamica.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ClaseConstructoresYDestructores.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
